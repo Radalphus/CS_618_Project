@@ -1,5 +1,5 @@
 FROM node:20 AS build
-ARG VITE_BACKEND_URL=https://blog-backend-882410244977.us-east1.run.app/
+ARG VITE_BACKEND_URL=https://blog-backend-882410244977.us-east1.run.app/api/v1
 WORKDIR /build
 COPY package.json .
 COPY package-lock.json .

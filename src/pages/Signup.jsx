@@ -26,6 +26,7 @@ export function Signup() {
       <Link to='/'>Back to main page</Link>
       <hr />
       <br />
+      Sign Up Now!
       <div>
         <label htmlFor='create-username'>Username: </label>
         <input
