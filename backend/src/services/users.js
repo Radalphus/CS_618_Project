@@ -17,6 +17,12 @@ export async function loginUser({ username, password }) {
   if (!isPasswordCorrect) {
     throw new Error('invalid password!')
   }
+
+  if (!process.env.JWT_SECRET) {
+    // explicit error so it’s obvious in logs
+    throw new Error('jwt secret not configured');
+  }
+
   const token = jwt.sign({ sub: user._id }, process.env.JWT_SECRET, {
     expiresIn: '24h',
   })

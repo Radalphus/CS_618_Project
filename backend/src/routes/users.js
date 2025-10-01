@@ -14,14 +14,15 @@ export function userRoutes(app) {
 
   app.post('/api/v1/user/login', async (req, res) => {
     try {
-      const token = await loginUser(req.body)
-      return res.status(200).send({ token })
+      const token = await loginUser(req.body);
+      return res.status(200).json({ token });
     } catch (err) {
-      return res.status(400).send({
-        error: 'login failed, did you enter the correct username/password?',
-      })
+      console.error('Login error:', err);
+      return res.status(400).json({
+        error: err.message || 'login failed',
+      });
     }
-  })
+  });
 
   app.get('/api/v1/users/:id', async (req, res) => {
     const userInfo = await getUserInfoById(req.params.id)
