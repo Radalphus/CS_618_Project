@@ -9,7 +9,9 @@ export const signup = async ({ username, password }) => {
 }
 
 export const login = async ({ username, password }) => {
-  const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/user/login`, {
+  const url = "https://blog-backend-882410244977.us-east1.run.app/"
+  //const url = import.meta.env.VITE_BACKEND_URL
+  const res = await fetch(`${url}/user/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ username, password }),
