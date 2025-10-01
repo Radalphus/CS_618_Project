@@ -1,4 +1,4 @@
-# NOTES
+# NOTES HELP
 
 ## Extensions:
 - Docker (by Microsoft)
