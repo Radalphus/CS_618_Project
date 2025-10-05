@@ -25,7 +25,9 @@ export function CreateRecipe() {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label htmlFor='create-title'>Title: </label>
+        <label htmlFor='create-title'>
+          <h2>Recipe Title:</h2>{' '}
+        </label>
         <input
           type='text'
           name='create-title'
@@ -35,6 +37,7 @@ export function CreateRecipe() {
         />
       </div>
       <br />
+      <h2>Recipe Ingredients and Instructions:</h2>
       <textarea
         value={contents}
         onChange={(e) => setContents(e.target.value)}

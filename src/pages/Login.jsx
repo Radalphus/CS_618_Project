@@ -31,33 +31,47 @@ export function Login() {
       <Link to='/'>Back to main page</Link>
       <hr />
       <br />
-      <div>
-        <label htmlFor='create-username'>Username: </label>
-        <input
-          type='text'
-          name='create-username'
-          id='create-username'
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </div>
       <br />
-      <div>
-        <label htmlFor='create-password'>Password: </label>
-        <input
-          type='password'
-          name='create-password'
-          id='create-password'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
       <br />
-      <input
-        type='submit'
-        value={loginMutation.isPending ? 'Logging in...' : 'Log In'}
-        disabled={!username || !password || loginMutation.isPending}
-      />
+      <center>
+        <div
+          style={{
+            background: '#a5bcf8ff',
+            border: '1px solid black',
+            borderRadius: '5px',
+            padding: '10px',
+            width: '400px',
+          }}
+        >
+          <div>
+            <label htmlFor='create-username'>Username: </label>
+            <input
+              type='text'
+              name='create-username'
+              id='create-username'
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <br />
+          <div>
+            <label htmlFor='create-password'>Password: </label>
+            <input
+              type='password'
+              name='create-password'
+              id='create-password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <br />
+          <input
+            type='submit'
+            value={loginMutation.isPending ? 'Logging in...' : 'Log In'}
+            disabled={!username || !password || loginMutation.isPending}
+          />
+        </div>
+      </center>
     </form>
   )
 }
