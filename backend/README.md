@@ -60,7 +60,7 @@ docker build -t blog-backend .
 Then, you can start a new container, as follows:
 
 ```bash
-docker run -it -e PORT=3001 -e DATABASE_URL=mongodb://host.docker.internal:27017/blog -p 3001:3001 blog-backend
+docker run -it -e PORT=3001 -e DATABASE_URL=mongodb://host.docker.internal:27017/recipe_book -p 3001:3001 blog-backend
 ```
 
 Please note that this requires a MongoDB container to be running on port 27017!
