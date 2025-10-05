@@ -17,7 +17,7 @@ services:
     build:
       context: .
       args:
-        VITE_BACKEND_URL: https://blog-backend-882410244977.us-east1.run.app/api/v1
+        VITE_BACKEND_URL: https://example.com
     ports:
       - '3000:80'
     depends_on:
