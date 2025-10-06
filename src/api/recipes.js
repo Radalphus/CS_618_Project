@@ -17,3 +17,13 @@ export const createRecipe = async (token, recipe) => {
   })
   return await res.json()
 }
+
+export const deleteRecipe = async (token, id) => {
+  const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/recipes/${id}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  return await res.json()
+}
