@@ -6,18 +6,24 @@ export function Recipe({ title, contents, image, author }) {
     <article>
       <h3>{title}</h3>
       <div>{contents}</div>
+      <br/>
       <div>
         <img
           src={image}
           alt={image}
           style={{
+            minWidth: '200px',
+            minHeight: '200px',
             maxWidth: '200px',
             maxHeight: '200px',
             width: 'auto',
             height: 'auto',
+            objectFit: 'contain',
+            border: '1px solid black',
           }}
         />
       </div>
+      <div>Image url: {image}</div>
       {author && (
         <em>
           <br />
