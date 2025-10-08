@@ -6,11 +6,14 @@ import { RecipeFilter } from '../components/RecipeFilter.jsx'
 import { RecipeSorting } from '../components/RecipeSorting.jsx'
 import { Header } from '../components/Header.jsx'
 import { getRecipes } from '../api/recipes.js'
+import { useAuth } from '../contexts/AuthContext.jsx'
 
 export function Blog() {
   const [author, setAuthor] = useState('')
   const [sortBy, setSortBy] = useState('createdAt')
   const [sortOrder, setSortOrder] = useState('descending')
+
+  const { username } = useAuth()
 
   const recipesQuery = useQuery({
     queryKey: ['recipes', { author, sortBy, sortOrder }],
@@ -33,6 +36,9 @@ export function Blog() {
         value={author}
         onChange={(value) => setAuthor(value)}
       />
+      {username && (
+        <button onClick={setAuthor(username)}>View My Recipes</button>
+      )}
       <br />
       <RecipeSorting
         fields={['createdAt', 'updatedAt']}

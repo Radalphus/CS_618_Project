@@ -3,12 +3,10 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useAuth } from '../contexts/AuthContext.jsx'
 import { deleteRecipe } from '../api/recipes.js'
 import { User } from './User.jsx'
-import { jwtDecode } from 'jwt-decode'
 
 export function Recipe({ _id, title, contents, image, author }) {
-  const [token] = useAuth()
+  const {token, sub} = useAuth()
   const queryClient = useQueryClient()
-  const { sub } = token ? jwtDecode(token) : {}
   const deleteRecipeMutation = useMutation({
     mutationFn: () => deleteRecipe(token, _id),
     onSuccess: () => {

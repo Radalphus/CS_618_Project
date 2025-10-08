@@ -4,7 +4,7 @@ import { createRecipe } from '../api/recipes.js'
 import { useAuth } from '../contexts/AuthContext.jsx'
 
 export function CreateRecipe() {
-  const [token] = useAuth()
+  const {token} = useAuth()
 
   const [title, setTitle] = useState('')
   const [contents, setContents] = useState('')

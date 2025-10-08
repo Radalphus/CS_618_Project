@@ -10,7 +10,7 @@ export function Login() {
   const [password, setPassword] = useState('')
 
   const navigate = useNavigate()
-  const [, setToken] = useAuth()
+  const {setToken} = useAuth()
 
   const loginMutation = useMutation({
     mutationFn: () => login({ username, password }),
