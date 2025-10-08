@@ -25,5 +25,11 @@ export const deleteRecipe = async (token, id) => {
       Authorization: `Bearer ${token}`,
     },
   })
-  return await res.json()
+
+  if (!res.ok) {
+    const msg = await res.text().catch(() => '');
+    throw new Error(msg || `HTTP ${res.status}`);
+  }
+  
+  return null
 }

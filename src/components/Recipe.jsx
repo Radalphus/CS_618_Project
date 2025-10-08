@@ -5,14 +5,15 @@ import { deleteRecipe } from '../api/recipes.js'
 import { User } from './User.jsx'
 import { jwtDecode } from 'jwt-decode'
 
-
 export function Recipe({ _id, title, contents, image, author }) {
   const [token] = useAuth()
   const queryClient = useQueryClient()
-  const { sub } = token ? jwtDecode(token): {}
+  const { sub } = token ? jwtDecode(token) : {}
   const deleteRecipeMutation = useMutation({
     mutationFn: () => deleteRecipe(token, _id),
-    onSuccess: () => queryClient.invalidateQueries(['recipes']),
+    onSuccess: () => {
+      queryClient.invalidateQueries(['recipes'])
+    },
   })
 
   const handleDelete = () => {
