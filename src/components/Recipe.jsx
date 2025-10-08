@@ -4,8 +4,11 @@ import { useAuth } from '../contexts/AuthContext.jsx'
 import { deleteRecipe } from '../api/recipes.js'
 import { User } from './User.jsx'
 import { jwtDecode } from 'jwt-decode'
+import { useState } from 'react'
+import { EditRecipe } from './EditRecipe.jsx'
 
 export function Recipe({ _id, title, contents, image, author }) {
+  const [editing, setEditing] = useState(false)
   const [token] = useAuth()
   const queryClient = useQueryClient()
   const { sub } = token ? jwtDecode(token) : {}
@@ -20,6 +23,19 @@ export function Recipe({ _id, title, contents, image, author }) {
     if (confirm('Are you sure you want to delete this recipe?')) {
       deleteRecipeMutation.mutate()
     }
+  }
+
+  if (editing) {
+    return (
+      <EditRecipe
+        _id={_id}
+        title={title}
+        contents={contents}
+        image={image}
+        author={author}
+        onDone={() => setEditing(false)}
+      />
+    )
   }
 
   return (
@@ -59,6 +75,9 @@ export function Recipe({ _id, title, contents, image, author }) {
           {deleteRecipeMutation.isPending ? 'Deleting...' : 'Delete'}
         </button>
       )}
+
+      {sub == author && <button onClick={() => setEditing(true)}>Edit</button>}
+
       {deleteRecipeMutation.isSuccess && (
         <>
           <br />
