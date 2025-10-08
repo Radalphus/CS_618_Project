@@ -8,7 +8,11 @@ export function User({ id }) {
     queryFn: () => getUserInfo(id),
   })
   const userInfo = userInfoQuery.data ?? {}
-  return <strong>{userInfo?.username ?? id}</strong>
+  return (
+    <span>
+      <strong>{userInfo?.username ?? id}</strong> (User ID {id})
+    </span>
+  )
 }
 
 User.propTypes = {
