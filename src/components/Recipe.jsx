@@ -102,10 +102,10 @@ export function Recipe({ _id, title, contents, image, author, likes = [], likeCo
             onClick={() => likeMutation.mutate()}
             disabled={likeMutation.isPending}
             style={{
-              backgroundColor: likes.includes(sub) ? '#e0e0e0' : 'white',
+              backgroundColor: likes.some(like => like._id === sub) ? '#e0e0e0' : 'white',
             }}
           >
-            {likes.includes(sub) ? 'Unlike' : 'Like'}
+            {likes.some(like => like._id === sub) ? 'Unlike' : 'Like'}
           </button>
         )}
       </div>
