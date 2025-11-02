@@ -10,7 +10,9 @@ async function listRecipes(
   query = {},
   { sortBy = 'createdAt', sortOrder = 'descending' } = {},
 ) {
-  return await Recipe.find(query).sort({ [sortBy]: sortOrder })
+  return await Recipe.find(query)
+    .populate('likes', '_id username')
+    .sort({ [sortBy]: sortOrder })
 }
 
 export async function listAllRecipes(options) {
@@ -28,7 +30,23 @@ export async function listRecipesByTag(tags, options) {
 }
 
 export async function getRecipeById(recipeId) {
-  return await Recipe.findById(recipeId)
+  return await Recipe.findById(recipeId).populate('likes', '_id username')
+}
+
+export async function toggleLikeRecipe(userId, recipeId) {
+  const recipe = await Recipe.findById(recipeId)
+  if (!recipe) return null
+
+  const userLikeIndex = recipe.likes.indexOf(userId)
+  if (userLikeIndex === -1) {
+    recipe.likes.push(userId)
+    recipe.likeCount += 1
+  } else {
+    recipe.likes.splice(userLikeIndex, 1)
+    recipe.likeCount -= 1
+  }
+  
+  return await recipe.save()
 }
 
 export async function updateRecipe(

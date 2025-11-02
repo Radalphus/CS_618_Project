@@ -35,7 +35,7 @@ export function Blog() {
       />
       <br />
       <RecipeSorting
-        fields={['createdAt', 'updatedAt']}
+        fields={['createdAt', 'updatedAt', 'likeCount']}
         value={sortBy}
         onChange={(value) => setSortBy(value)}
         orderValue={sortOrder}
